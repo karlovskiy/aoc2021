@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestExample(t *testing.T) {
+func TestBinaryDiagnosticExample(t *testing.T) {
 	pwrCnsmpt, err := BinaryDiagnostic("testdata/day3_example", false)
 	if err != nil {
 		t.Fatalf("error testing example input file: %v", err)
@@ -14,7 +14,7 @@ func TestExample(t *testing.T) {
 	}
 }
 
-func TestInput(t *testing.T) {
+func TestBinaryDiagnostic(t *testing.T) {
 	pwrCnsmpt, err := BinaryDiagnostic("testdata/day3_input", false)
 	if err != nil {
 		t.Fatalf("error testing input file: %v", err)
@@ -31,7 +31,7 @@ pkg: github.com/karlovskiy/aoc2021
 cpu: Intel(R) Core(TM) i7-4770K CPU @ 3.50GHz
 BenchmarkInput-8   	   17738	     70342 ns/op
 */
-func BenchmarkInput(b *testing.B) {
+func BenchmarkBinaryDiagnostic(b *testing.B) {
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
 		_, err := BinaryDiagnostic("testdata/day3_input", false)

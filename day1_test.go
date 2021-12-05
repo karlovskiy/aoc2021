@@ -24,6 +24,26 @@ func TestSonarSweep(t *testing.T) {
 	}
 }
 
+func TestSonarSweepThreeMeasurementExample(t *testing.T) {
+	result, err := SonarSweepThreeMeasurement("testdata/day1_example", false)
+	if err != nil {
+		t.Fatalf("error testing example input file: %v", err)
+	}
+	if result != 5 {
+		t.Fatalf("wrong result for example input file, actual=%d, expected=%d", result, 5)
+	}
+}
+
+func TestSonarSweepThreeMeasurement(t *testing.T) {
+	result, err := SonarSweepThreeMeasurement("testdata/day1_input", false)
+	if err != nil {
+		t.Fatalf("error testing input file: %v", err)
+	}
+	if result != 1822 {
+		t.Fatalf("wrong result for input file, actual=%d, expected=%d", result, 1822)
+	}
+}
+
 /**
 goos: linux
 goarch: amd64
@@ -35,6 +55,24 @@ func BenchmarkSonarSweep(b *testing.B) {
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
 		_, err := SonarSweep("testdata/day1_input", false)
+		if err != nil {
+			b.Fatalf("error testing input file: %v", err)
+		}
+	}
+}
+
+/*
+goos: linux
+goarch: amd64
+pkg: github.com/karlovskiy/aoc2021
+cpu: Intel(R) Core(TM) i7-4770K CPU @ 3.50GHz
+BenchmarkSonarSweepThreeMeasurement-8   	   14653	     82028 ns/op
+
+*/
+func BenchmarkSonarSweepThreeMeasurement(b *testing.B) {
+	b.ResetTimer()
+	for n := 0; n < b.N; n++ {
+		_, err := SonarSweepThreeMeasurement("testdata/day1_input", false)
 		if err != nil {
 			b.Fatalf("error testing input file: %v", err)
 		}

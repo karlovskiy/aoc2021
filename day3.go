@@ -13,7 +13,7 @@ func BinaryDiagnostic(inputFile string, debug bool) (int, error) {
 	}
 	cols := bytes.IndexByte(data, 10)
 	lastRow := (len(data)+1)/(cols+1) - 1
-	zeros, ones := make([]int, cols), make([]int, cols)
+	ones := make([]int, cols)
 	i, j, gamma, epsilon := 0, 0, 0, 0
 	for _, c := range data {
 		if c == 10 {
@@ -27,24 +27,21 @@ func BinaryDiagnostic(inputFile string, debug bool) (int, error) {
 		if debug {
 			log.Printf("%d:%v", i, c)
 		}
-		if c == 48 {
-			zeros[i]++
-		} else if c == 49 {
+		if c == 49 {
 			ones[i]++
 		}
 		if j == lastRow {
 			bitPosition := cols - i - 1
-			if zeros[i] > ones[i] {
+			if ones[i]*2 > lastRow+1 {
 				gamma |= 1 << bitPosition
-			} else if ones[i] > zeros[i] {
+			} else {
 				epsilon |= 1 << bitPosition
 			}
 		}
 		i++
 	}
 	if debug {
-		log.Printf("zeros: %v, ones: %v", zeros, ones)
-		log.Printf("gamma: %b, epsilon: %b", gamma, epsilon)
+		log.Printf("ones:%v, gamma: %b, epsilon: %b", ones, gamma, epsilon)
 	}
 	result := gamma * epsilon
 	return result, nil

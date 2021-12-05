@@ -4,19 +4,17 @@ import (
 	"bytes"
 	"log"
 	"os"
-	"strconv"
 )
 
-func BinaryDiagnostic(inputFile string, debug bool) (int64, error) {
+func BinaryDiagnostic(inputFile string, debug bool) (int, error) {
 	data, err := os.ReadFile(inputFile)
 	if err != nil {
 		return 0, err
 	}
 	cols := bytes.IndexByte(data, 10)
 	lastRow := (len(data)+1)/(cols+1) - 1
-	zeros, ones := make([]int, cols, cols), make([]int, cols, cols)
-	gammaBits, epsilonBits := make([]byte, cols, cols), make([]byte, cols, cols)
-	i, j := 0, 0
+	zeros, ones := make([]int, cols), make([]int, cols)
+	i, j, gamma, epsilon := 0, 0, 0, 0
 	for _, c := range data {
 		if c == 10 {
 			i = 0
@@ -35,28 +33,19 @@ func BinaryDiagnostic(inputFile string, debug bool) (int64, error) {
 			ones[i]++
 		}
 		if j == lastRow {
+			bitPosition := cols - i - 1
 			if zeros[i] > ones[i] {
-				gammaBits[i] = 48
-				epsilonBits[i] = 49
+				gamma |= 1 << bitPosition
 			} else if ones[i] > zeros[i] {
-				gammaBits[i] = 49
-				epsilonBits[i] = 48
+				epsilon |= 1 << bitPosition
 			}
 		}
 		i++
 	}
 	if debug {
 		log.Printf("zeros: %v, ones: %v", zeros, ones)
-		log.Printf("g: %s, e: %s", gammaBits, epsilonBits)
+		log.Printf("gamma: %b, epsilon: %b", gamma, epsilon)
 	}
-	gammaRate, err := strconv.ParseInt(string(gammaBits), 2, 64)
-	if err != nil {
-		return 0, err
-	}
-	epsilonRate, err := strconv.ParseInt(string(epsilonBits), 2, 64)
-	if err != nil {
-		return 0, err
-	}
-	result := gammaRate * epsilonRate
+	result := gamma * epsilon
 	return result, nil
 }

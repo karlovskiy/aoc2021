@@ -2,19 +2,14 @@ package aoc2021
 
 import (
 	"log"
-	"os"
 	"strconv"
 )
 
-func SonarSweep(inputFile string, debug bool) (int, error) {
-	data, err := os.ReadFile(inputFile)
-	if err != nil {
-		return 0, nil
-	}
-	lastRow := len(data) - 1
+func SonarSweep(input []byte, debug bool) (int, error) {
+	lastRow := len(input) - 1
 	num := make([]byte, 0, 16)
 	i, prev, result := 0, -1, -1
-	for j, c := range data {
+	for j, c := range input {
 		if c == 10 {
 			i = 0
 			cur, err := strconv.Atoi(string(num))
@@ -49,13 +44,9 @@ func SonarSweep(inputFile string, debug bool) (int, error) {
 	return result, nil
 }
 
-func SonarSweepThreeMeasurement(inputFile string, debug bool) (int, error) {
-	data, err := os.ReadFile(inputFile)
-	if err != nil {
-		return 0, nil
-	}
+func SonarSweepThreeMeasurement(input []byte, debug bool) (int, error) {
 	num := make([]byte, 0, 16)
-	lastDataIndex := len(data) - 1
+	lastDataIndex := len(input) - 1
 	windows := []*window{{
 		index: 0,
 		val:   0,
@@ -67,7 +58,7 @@ func SonarSweepThreeMeasurement(inputFile string, debug bool) (int, error) {
 		val:   0,
 	}}
 	prev, result := 0, -1 /*no previous sum*/
-	for j, c := range data {
+	for j, c := range input {
 		if c == 10 || j == lastDataIndex {
 			if j == lastDataIndex {
 				num = append(num, c)

@@ -2,18 +2,14 @@ package aoc2021
 
 import (
 	"bufio"
-	"os"
+	"bytes"
 	"strconv"
 	"strings"
 )
 
-func Dive(inputFile string) (int, error) {
-	f, err := os.Open(inputFile)
-	if err != nil {
-		return 0, nil
-	}
-	hPos, depth := 0, 0
-	scanner := bufio.NewScanner(f)
+func Dive(input []byte, withAim bool) (int, error) {
+	hPos, depth, aim := 0, 0, 0
+	scanner := bufio.NewScanner(bytes.NewReader(input))
 	for scanner.Scan() {
 		line := scanner.Text()
 		tokens := strings.Split(line, " ")
@@ -25,10 +21,21 @@ func Dive(inputFile string) (int, error) {
 		switch command {
 		case "forward":
 			hPos += val
+			if withAim && aim > 0 {
+				depth += aim * val
+			}
 		case "down":
-			depth += val
+			if withAim {
+				aim += val
+			} else {
+				depth += val
+			}
 		case "up":
-			depth -= val
+			if withAim {
+				aim -= val
+			} else {
+				depth -= val
+			}
 		}
 	}
 	result := hPos * depth

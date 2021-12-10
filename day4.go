@@ -6,7 +6,9 @@ import (
 	"strconv"
 )
 
-func GiantSquid(input []byte, last bool, debug bool) (int, error) {
+func GiantSquid(input []byte, params ...interface{}) (int, error) {
+	debug := params[0].(bool)
+	last := params[1].(bool)
 	lastInputIndex := len(input) - 1
 	nums := make([]int, 0, 32)
 	numSymbols := make([]byte, 0, 16)

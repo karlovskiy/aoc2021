@@ -5,7 +5,8 @@ import (
 	"strconv"
 )
 
-func SonarSweep(input []byte, debug bool) (int, error) {
+func SonarSweep(input []byte, params ...interface{}) (int, error) {
+	debug := params[0].(bool)
 	lastRow := len(input) - 1
 	num := make([]byte, 0, 16)
 	i, prev, result := 0, -1, -1
@@ -44,7 +45,8 @@ func SonarSweep(input []byte, debug bool) (int, error) {
 	return result, nil
 }
 
-func SonarSweepThreeMeasurement(input []byte, debug bool) (int, error) {
+func SonarSweepThreeMeasurement(input []byte, params ...interface{}) (int, error) {
+	debug := params[0].(bool)
 	num := make([]byte, 0, 16)
 	lastDataIndex := len(input) - 1
 	windows := []*window{{

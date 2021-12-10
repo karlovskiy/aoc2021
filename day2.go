@@ -7,7 +7,8 @@ import (
 	"strings"
 )
 
-func Dive(input []byte, withAim bool) (int, error) {
+func Dive(input []byte, params ...interface{}) (int, error) {
+	withAim := params[0].(bool)
 	hPos, depth, aim := 0, 0, 0
 	scanner := bufio.NewScanner(bytes.NewReader(input))
 	for scanner.Scan() {

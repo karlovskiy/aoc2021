@@ -6,7 +6,8 @@ import (
 	"log"
 )
 
-func BinaryDiagnostic(input []byte, debug bool) (int, error) {
+func BinaryDiagnostic(input []byte, params ...interface{}) (int, error) {
+	debug := params[0].(bool)
 	cols := bytes.IndexByte(input, 10)
 	lastRow := (len(input)+1)/(cols+1) - 1
 	ones := make([]int, cols)
@@ -43,7 +44,8 @@ func BinaryDiagnostic(input []byte, debug bool) (int, error) {
 	return result, nil
 }
 
-func BinaryDiagnosticPowerConsumption(input []byte, debug bool) (int, error) {
+func BinaryDiagnosticPowerConsumption(input []byte, params ...interface{}) (int, error) {
+	debug := params[0].(bool)
 	cols := bytes.IndexByte(input, 10)
 	rows := (len(input) + 1) / (cols + 1)
 	oxygenIndex, co2Index := -1, -1

@@ -5,81 +5,33 @@ import (
 )
 
 func TestBinaryDiagnosticExample(t *testing.T) {
-	input := LoadInput("testdata/day3_example")
-	result, err := BinaryDiagnostic(input, false)
-	if err != nil {
-		t.Fatalf("error testing example input file: %v", err)
-	}
-	if result != 198 {
-		t.Fatalf("wrong result for example input file, actual=%d, expected=%d", result, 198)
-	}
+	RunTest(t, BinaryDiagnostic, "testdata/day3_example", 198, false)
 }
 
 func TestBinaryDiagnostic(t *testing.T) {
-	input := LoadInput("testdata/day3_input")
-	result, err := BinaryDiagnostic(input, false)
-	if err != nil {
-		t.Fatalf("error testing input file: %v", err)
-	}
-	if result != 4001724 {
-		t.Fatalf("wrong result for input file, actual=%d, expected=%d", result, 198)
-	}
+	RunTest(t, BinaryDiagnostic, "testdata/day3_input", 4001724, false)
 }
 
 func TestBinaryDiagnosticPowerConsumptionExample(t *testing.T) {
-	input := LoadInput("testdata/day3_example")
-	result, err := BinaryDiagnosticPowerConsumption(input, false)
-	if err != nil {
-		t.Fatalf("error testing example input file: %v", err)
-	}
-	if result != 230 {
-		t.Fatalf("wrong result for example input file, actual=%d, expected=%d", result, 230)
-	}
+	RunTest(t, BinaryDiagnosticPowerConsumption, "testdata/day3_example", 230, false)
 }
 
 func TestBinaryDiagnosticPowerConsumption(t *testing.T) {
-	input := LoadInput("testdata/day3_input")
-	result, err := BinaryDiagnosticPowerConsumption(input, false)
-	if err != nil {
-		t.Fatalf("error testing input file: %v", err)
-	}
-	if result != 587895 {
-		t.Fatalf("wrong result for input file, actual=%d, expected=%d", result, 587895)
-	}
+	RunTest(t, BinaryDiagnosticPowerConsumption, "testdata/day3_input", 587895, false)
 }
 
-/**
-goos: linux
-goarch: amd64
-pkg: github.com/karlovskiy/aoc2021
-cpu: Intel(R) Core(TM) i7-4770K CPU @ 3.50GHz
-BenchmarkBinaryDiagnostic-8                   	   21386	     54882 ns/op
-*/
 func BenchmarkBinaryDiagnostic(b *testing.B) {
 	input := LoadInput("testdata/day3_input")
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		_, err := BinaryDiagnostic(input, false)
-		if err != nil {
-			b.Fatalf("error testing input file: %v", err)
-		}
+		RunBench(b, BinaryDiagnostic, input, false)
 	}
 }
 
-/**
-goos: linux
-goarch: amd64
-pkg: github.com/karlovskiy/aoc2021
-cpu: Intel(R) Core(TM) i7-4770K CPU @ 3.50GHz
-BenchmarkBinaryDiagnosticPowerConsumption-8   	    1764	    733968 ns/op
-*/
 func BenchmarkBinaryDiagnosticPowerConsumption(b *testing.B) {
 	input := LoadInput("testdata/day3_input")
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		_, err := BinaryDiagnosticPowerConsumption(input, false)
-		if err != nil {
-			b.Fatalf("error testing input file: %v", err)
-		}
+		RunBench(b, BinaryDiagnosticPowerConsumption, input, false)
 	}
 }

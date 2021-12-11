@@ -34,13 +34,20 @@ func TreacheryOfWhales(input []byte, params ...interface{}) (int, error) {
 	}
 	numsLen := len(nums)
 	min := math.MaxInt32
+	m := make(map[int]int)
 	for i := 1; i < maxPos; i++ {
 		fuel := 0
 		for j := 0; j < numsLen; j++ {
 			if expensive {
-				for k := 1; k < Abs(i-nums[j])+1; k++ {
-					fuel += k
+				moves := Abs(i - nums[j])
+				val, ok := m[moves]
+				if !ok {
+					for k := 1; k < Abs(i-nums[j])+1; k++ {
+						val += k
+					}
+					m[moves] = val
 				}
+				fuel += val
 			} else {
 				fuel += Abs(i - nums[j])
 			}

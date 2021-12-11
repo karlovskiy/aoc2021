@@ -2,14 +2,14 @@
 
 https://adventofcode.com/2021
 
-| Day                                                             | Source             |
-|-----------------------------------------------------------------|--------------------|
-| [Day 1: Sonar Sweep](https://adventofcode.com/2021/day/1)       | [day1.go](day1.go) |
-| [Day 2: Dive](https://adventofcode.com/2021/day/2)              | [day2.go](day2.go) |
-| [Day 3: Binary Diagnostic](https://adventofcode.com/2021/day/3) | [day3.go](day3.go) |
-| [Day 4: Giant Squid](https://adventofcode.com/2021/day/4)       | [day4.go](day4.go) |
-| [Day 6: Lanternfish](https://adventofcode.com/2021/day/6)       | [day6.go](day6.go) |
-
+| Day                                                                   | Source             |
+|-----------------------------------------------------------------------|--------------------|
+| [Day 1: Sonar Sweep](https://adventofcode.com/2021/day/1)             | [day1.go](day1.go) |
+| [Day 2: Dive](https://adventofcode.com/2021/day/2)                    | [day2.go](day2.go) |
+| [Day 3: Binary Diagnostic](https://adventofcode.com/2021/day/3)       | [day3.go](day3.go) |
+| [Day 4: Giant Squid](https://adventofcode.com/2021/day/4)             | [day4.go](day4.go) |
+| [Day 6: Lanternfish](https://adventofcode.com/2021/day/6)             | [day6.go](day6.go) |
+| [Day 7: The Treachery of Whales](https://adventofcode.com/2021/day/7) | [day7.go](day7.go) |
 
 ```shell
 goos: linux
@@ -26,4 +26,6 @@ BenchmarkGiantSquid-8                         	    6088	    201350 ns/op
 BenchmarkGiantSquidLast-8                     	    2637	    428137 ns/op
 BenchmarkLanternfish-8                        	  190245	      5832 ns/op
 BenchmarkLanternfish256-8                     	   93782	     11553 ns/op
+BenchmarkTreacheryOfWhales-8                        1086	   1126557 ns/op
+BenchmarkTreacheryOfWhalesExpensive-8                  3	 411305396 ns/op
 ```

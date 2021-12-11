@@ -31,4 +31,11 @@ func RunBench(b *testing.B, tf testFunc, input []byte, params ...interface{}) {
 	}
 }
 
+func Abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
+}
+
 type testFunc func([]byte, ...interface{}) (int, error)

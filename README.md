@@ -10,6 +10,7 @@ https://adventofcode.com/2021
 | [Day 4: Giant Squid](https://adventofcode.com/2021/day/4)             | [day4.go](day4.go) |
 | [Day 6: Lanternfish](https://adventofcode.com/2021/day/6)             | [day6.go](day6.go) |
 | [Day 7: The Treachery of Whales](https://adventofcode.com/2021/day/7) | [day7.go](day7.go) |
+| [Day 9: Smoke Basin](https://adventofcode.com/2021/day/7)             | [day9.go](day9.go) |
 
 ```shell
 goos: linux
@@ -28,4 +29,5 @@ BenchmarkLanternfish-8                        	  190245	      5832 ns/op
 BenchmarkLanternfish256-8                     	   93782	     11553 ns/op
 BenchmarkTreacheryOfWhales-8                        1086	   1126557 ns/op
 BenchmarkTreacheryOfWhalesExpensive-8                 60	  20353045 ns/op
+BenchmarkSmokeBasin-8                         	   12050	    100811 ns/op
 ```

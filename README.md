@@ -27,5 +27,5 @@ BenchmarkGiantSquidLast-8                     	    2637	    428137 ns/op
 BenchmarkLanternfish-8                        	  190245	      5832 ns/op
 BenchmarkLanternfish256-8                     	   93782	     11553 ns/op
 BenchmarkTreacheryOfWhales-8                        1086	   1126557 ns/op
-BenchmarkTreacheryOfWhalesExpensive-8                 54	  22171851 ns/op
+BenchmarkTreacheryOfWhalesExpensive-8                 60	  20353045 ns/op
 ```

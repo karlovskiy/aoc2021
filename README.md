@@ -10,7 +10,7 @@ https://adventofcode.com/2021
 | [Day 4: Giant Squid](https://adventofcode.com/2021/day/4)             | [day4.go](day4.go) |
 | [Day 6: Lanternfish](https://adventofcode.com/2021/day/6)             | [day6.go](day6.go) |
 | [Day 7: The Treachery of Whales](https://adventofcode.com/2021/day/7) | [day7.go](day7.go) |
-| [Day 9: Smoke Basin](https://adventofcode.com/2021/day/7)             | [day9.go](day9.go) |
+| [Day 9: Smoke Basin](https://adventofcode.com/2021/day/9)             | [day9.go](day9.go) |
 
 ```shell
 goos: linux
